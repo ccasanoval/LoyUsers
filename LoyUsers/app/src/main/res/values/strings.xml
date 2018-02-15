@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LoyUsers</string>
+    <string name="imagen_del_usuario">Imagen del usuario</string>
+    <string name="error_recuperar_datos">Ups! Parece que algo falló al recuperar los datos...</string>
+    <string name="prueba_otra_vez">Inténtelo de nuevo</string>
+    <string name="sin_datos">Ups! Parece que no hay datos que mostrar...</string>
+</resources>

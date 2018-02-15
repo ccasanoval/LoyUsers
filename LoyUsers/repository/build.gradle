@@ -1,0 +1,69 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+}
+
+def butterKnifeVersion = '7.0.1'
+def supportVersion = '27.0.2'
+def rxJavaVersion = '2.0.2'
+def rxAndroidVersion = '2.0.1'
+def javaxAnnotationVersion = '1.0'
+def javaxInjectVersion = '1'
+def gsonVersion = '2.8.1'
+def okHttpVersion = '3.8.1'
+def androidAnnotationsVersion = '21.0.3'
+def retrofitVersion = '2.3.0'
+def roomVersion = '1.0.0-alpha9-1'
+def supportLibraryVersion = '27.0.2'
+def timberVersion = '4.5.1'
+def glideVersion = '4.0.0'
+def daggerVersion = '2.13'
+
+dependencies {
+    implementation project(':domain')
+    //implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+
+    // REMOTE
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+    implementation "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+    implementation "javax.inject:javax.inject:${javaxInjectVersion}"
+    implementation "com.android.support:support-annotations:${androidAnnotationsVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+
+    // LOG
+    implementation "com.jakewharton.timber:timber:${timberVersion}"
+
+}
