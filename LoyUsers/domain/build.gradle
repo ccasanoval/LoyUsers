@@ -1,26 +1,15 @@
-apply plugin: 'com.android.library'
+apply plugin: 'java-library'
 
-android {
-    compileSdkVersion 27
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = 1.8
 
-    defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
+configurations {
+    provided
+}
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
     }
 }
 
@@ -28,17 +17,20 @@ def javaxAnnotationVersion='1.0'
 def javaxInjectVersion='1'
 def rxJavaVersion='2.0.2'
 
+def jUnitVersion = '4.12'
+def assertJVersion = '1.7.1'
+def mockitoVersion = '2.8.47'
+
 dependencies {
-    //implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    //implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     provided "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
     implementation "javax.inject:javax.inject:${javaxInjectVersion}"
     implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
-
+    /// UNIT TESTS
+    implementation "junit:junit:${jUnitVersion}"
+    implementation "org.mockito:mockito-core:${mockitoVersion}"
+    implementation "org.assertj:assertj-core:${assertJVersion}"
 }
+
+

@@ -15,42 +15,41 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 
 }
 
-def butterKnifeVersion = '7.0.1'
-def supportVersion = '27.0.2'
-def rxJavaVersion = '2.0.2'
-def rxAndroidVersion = '2.0.1'
+def jUnitVersion = '4.12'
+def assertJVersion = '1.7.1'
+def mockitoVersion = '2.8.47'
+
 def javaxAnnotationVersion = '1.0'
 def javaxInjectVersion = '1'
 def gsonVersion = '2.8.1'
 def okHttpVersion = '3.8.1'
 def androidAnnotationsVersion = '21.0.3'
 def retrofitVersion = '2.3.0'
-def roomVersion = '1.0.0-alpha9-1'
-def supportLibraryVersion = '27.0.2'
 def timberVersion = '4.5.1'
-def glideVersion = '4.0.0'
-def daggerVersion = '2.13'
+
 
 dependencies {
     implementation project(':domain')
     //implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation 'junit:junit:4.12'
+    // TESTS
+    testImplementation "junit:junit:${jUnitVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.assertj:assertj-core:${assertJVersion}"
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
 
     // REMOTE
     implementation "com.google.code.gson:gson:${gsonVersion}"

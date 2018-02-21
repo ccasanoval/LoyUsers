@@ -20,7 +20,7 @@ public class GetUserList extends UseCase<List<User>> {
 	private final UserRepo userRepo;
 
 	@Inject
-	GetUserList(UserRepo userRepo,
+	public GetUserList(UserRepo userRepo,
 				ThreadExecutor threadExecutor,
 				PostExecutionThread postExecutionThread) {
 		super(threadExecutor, postExecutionThread);
@@ -28,7 +28,7 @@ public class GetUserList extends UseCase<List<User>> {
 	}
 
 	@Override
-	Observable<List<User>> buildUseCaseObservable() {
+	public Observable<List<User>> buildUseCaseObservable() {
 		return userRepo.getUserList();
 	}
 }
