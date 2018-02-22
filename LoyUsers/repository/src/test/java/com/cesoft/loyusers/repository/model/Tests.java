@@ -1,19 +1,16 @@
 package com.cesoft.loyusers.repository.model;
 
 import com.cesoft.loyusers.domain.model.User;
-import com.cesoft.loyusers.repository.remote.RemoteServiceFactory;
+import com.cesoft.loyusers.repository.remote.net.RemoteServiceFactory;
 import com.cesoft.loyusers.repository.remote.model.RemoteUser;
 import com.cesoft.loyusers.repository.remote.model.RemoteUserParser;
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 import org.junit.Before;
-import org.junit.Test;
 
 
 import java.lang.reflect.Method;
@@ -61,9 +58,7 @@ public class Tests {
 
 	@org.junit.Test
 	public void testGetUsers() {
-
 		List<User> userList = RemoteUserParser.parse(remoteUser);
-
 		assertThat(userList.get(0).getCity()).isEqualTo(user.getCity());
 		assertThat(userList.get(0).getFirst()).isEqualTo(user.getFirst());
 		assertThat(userList.get(0).getLarge()).isEqualTo(user.getLarge());
@@ -73,7 +68,5 @@ public class Tests {
 		assertThat(userList.get(0).getState()).isEqualTo(user.getState());
 		assertThat(userList.get(0).getStreet()).isEqualTo(user.getStreet());
 		assertThat(userList.get(0).getTitle()).isEqualTo(user.getTitle());
-
-
 	}
 }

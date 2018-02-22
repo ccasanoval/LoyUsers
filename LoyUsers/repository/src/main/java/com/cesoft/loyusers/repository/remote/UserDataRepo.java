@@ -4,10 +4,17 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+
 import com.cesoft.loyusers.domain.model.User;
 import com.cesoft.loyusers.domain.repo.UserRepo;
+import com.cesoft.loyusers.repository.remote.cache.Cache;
 import com.cesoft.loyusers.repository.remote.model.RemoteUser;
 import com.cesoft.loyusers.repository.remote.model.RemoteUserParser;
+import com.cesoft.loyusers.repository.remote.net.RemoteServiceFactory;
+import com.nytimes.android.external.store.base.Store;
+import com.nytimes.android.external.store.base.impl.BarCode;
+
+
 
 import java.util.List;
 
@@ -15,11 +22,13 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import retrofit2.Call;
-import timber.log.Timber;
 
 /**
  * Created by ccasanova on 05/02/2018
  */
+//TODO: Cache
+// https://github.com/iainconnor/ObjectCache
+//https://github.com/NYTimes/Store
 @Singleton
 public class UserDataRepo implements UserRepo {
 	private static final String TAG = UserDataRepo.class.getSimpleName();
@@ -68,6 +77,57 @@ public class UserDataRepo implements UserRepo {
 
 		return isConnected;
 	}
+
+
+
+	//______________________________________________________________________________________________
+	/*Store store = null;
+	@Override
+	public rx.Observable<List<User>> getUserList2() {
+		if(store == null)
+			store = Cache.provideStore(context);
+
+		// get bar code for unique
+		final BarCode githubUserBarCode = Cache.generateBarCode("1");
+
+		return store.get(githubUserBarCode)
+				//.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(
+					/*@Override
+					public void onCompleted() {
+
+						Log.e(TAG, "onCompleted: ");
+					}
+
+					@Override
+					public void onError(Throwable e) {
+
+						Log.e(TAG, "onError: ");
+					}
+
+					@Override
+					public void onNext(GithubUser githubUser) {
+						handleGithubUser(githubUser);
+					}
+				);
+		/*return io.reactivex.Observable.create(emitter -> {
+			if(isThereInternetConnection()) {
+				try {
+					Call<RemoteUser> call = RemoteServiceFactory.makeService().getUserList(config.getNumItems());
+					RemoteUser remoteUser = call.execute().body();//SYNC
+					List<User> userList = RemoteUserParser.parse(remoteUser);
+					emitter.onNext(userList);
+					emitter.onComplete();
+				}
+				catch(Exception e) {
+					emitter.onError(e);
+				}
+			}
+			else {
+				emitter.onError(new Exception("NO_INTERNET_CONNECTION"));
+			}
+		});
+	}*/
 
 
 	//______________________________________________________________________________________________

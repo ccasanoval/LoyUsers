@@ -1,14 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'ces'
-            keyPassword 'colt1911'
-            storeFile file('C:/a/cestest.jks')
-            storePassword 'colt1911'
-        }
-    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.cesoft.loyusers"
@@ -24,30 +16,26 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro',
                     "$rootProject.rootDir.absolutePath/domain/proguard-rules.pro"
-            signingConfig signingConfigs.config
         }
     }
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
-    /*dataBinding {
-        enabled = true
-    }*/
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/rxjava.properties'
+
+    }
 }
 
 //Libraries
-def butterKnifeVersion = '7.0.1'
 def supportVersion = '27.0.2'
-def rxJavaVersion = '2.0.2'
 def rxAndroidVersion = '2.0.1'
-def javaxAnnotationVersion = '1.0'
-def javaxInjectVersion = '1'
-def gsonVersion = '2.8.1'
-def okHttpVersion = '3.8.1'
-def androidAnnotationsVersion = '21.0.3'
-def retrofitVersion = '2.3.0'
-def roomVersion = '1.0.0-alpha9-1'
 def supportLibraryVersion = '27.0.2'
 def timberVersion = '4.5.1'
 def glideVersion = '4.0.0'
@@ -71,8 +59,8 @@ dependencies {
     //implementation "android.arch.lifecycle:livedata:1.1.0"
     implementation 'android.arch.lifecycle:common-java8:1.1.0'
     //annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
-    //test
-    implementation 'android.arch.paging:runtime:1.0.0-alpha5'
+
+    //implementation 'android.arch.paging:runtime:1.0.0-alpha5'
     testImplementation 'android.arch.core:core-testing:1.1.0'
     // DB
     implementation 'android.arch.persistence.room:runtime:1.0.0'
@@ -87,17 +75,5 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:${supportLibraryVersion}"
     implementation "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
     implementation "com.github.bumptech.glide:glide:${glideVersion}"
-    /*  implementation "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
-            implementation "javax.inject:javax.inject:${javaxInjectVersion}"
-            implementation "com.android.support:support-annotations:${supportLibraryVersion}"
-            implementation "com.android.support:support-v4:${supportLibraryVersion}"
-            implementation "com.android.support:support-v13:${supportLibraryVersion}"
-            implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
-            implementation "com.android.support:recyclerview-v7:${supportLibraryVersion}"
-            implementation "com.android.support:design:${supportLibraryVersion}"
 
-            implementation "org.glassfish:javax.annotation:${glassfishAnnotationVersion}"
-            implementation "android.arch.persistence.room:runtime:${roomVersion}"
-            implementation "android.arch.persistence.room:compiler:${roomVersion}"
-            implementation "android.arch.persistence.room:rxjava2:${roomVersion}"*/
 }
