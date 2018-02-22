@@ -1,7 +1,9 @@
-package com.cesoft.loyusers.repository.remote;
+package com.cesoft.loyusers.repository.remote.net;
 
 import com.cesoft.loyusers.repository.remote.model.RemoteUser;
 
+
+import rx.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -19,4 +21,7 @@ public interface RemoteService {
 	//@GET("api/?inc=picture,name,location,phone&nat=es&seed=CESoft&results=100")
 	@GET("api/?inc=picture,name,location,phone&nat=es&seed=CESoft")
 	Call<RemoteUser> getUserList(@Query("results") int results);
+
+	@GET("api/?inc=picture,name,location,phone&nat=es&seed=CESoft&results=100")
+	Observable<RemoteUser> getUserList();
 }

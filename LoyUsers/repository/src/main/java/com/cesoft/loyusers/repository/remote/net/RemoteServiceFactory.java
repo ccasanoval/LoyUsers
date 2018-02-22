@@ -1,4 +1,4 @@
-package com.cesoft.loyusers.repository.remote;
+package com.cesoft.loyusers.repository.remote.net;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
