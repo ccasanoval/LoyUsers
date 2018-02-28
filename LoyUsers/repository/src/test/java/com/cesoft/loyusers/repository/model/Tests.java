@@ -22,8 +22,8 @@ import java.util.List;
  * Created by ccasanova on 21/02/2018
  */
 public class Tests {
-	User user;
-	RemoteUser remoteUser;
+	private User user;
+	private RemoteUser remoteUser;
 
 	@Before
 	public void setUp() {
@@ -44,7 +44,7 @@ public class Tests {
 
 		try {
 			//Para no hacer makeGson public...
-			Method method = RemoteServiceFactory.class.getDeclaredMethod("makeGson", null);
+			Method method = RemoteServiceFactory.class.getDeclaredMethod("makeGson", (Class<?>[]) null);
 			method.setAccessible(true);
 			Gson gson = (Gson)method.invoke(null);
 

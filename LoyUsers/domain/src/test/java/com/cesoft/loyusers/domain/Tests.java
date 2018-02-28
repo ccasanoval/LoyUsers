@@ -1,4 +1,4 @@
-package tests;
+package com.cesoft.loyusers.domain;
 
 import com.cesoft.loyusers.domain.executor.PostExecutionThread;
 import com.cesoft.loyusers.domain.executor.ThreadExecutor;

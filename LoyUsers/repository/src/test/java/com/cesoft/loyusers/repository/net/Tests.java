@@ -37,6 +37,19 @@ public class Tests {
 				List<RemoteUser.Result> res = response.body().results;
 				Assert.assertEquals(res.size(), nReg);
 				System.err.println("------"+res.get(0).name.first);
+
+				/*User user = new User(
+						"miss",
+						"carla",
+						"crespo",
+						"8822 calle de ángel garcía",
+						"alcobendas",
+						"ceuta",
+						"75324",
+						"https://randomuser.me/api/portraits/women/65.jpg",
+						"https://randomuser.me/api/portraits/med/women/65.jpg",
+						"https://randomuser.me/api/portraits/thumb/women/65.jpg");*/
+
 				responseLatch.countDown();
 			}
 

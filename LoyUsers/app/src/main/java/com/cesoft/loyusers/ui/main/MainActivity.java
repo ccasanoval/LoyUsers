@@ -26,7 +26,6 @@ import static android.view.View.GONE;
  */
 public class MainActivity extends AppCompatActivity {
 
-	private RecyclerView uiList;
 	@Inject
 	UserAdapter userAdapter;
 
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 		// UI
 		setContentView(R.layout.activity_main);
-		uiList = findViewById(R.id.user_list);
+		RecyclerView uiList = findViewById(R.id.user_list);
 		uiList.setLayoutManager(new LinearLayoutManager(this));
 		uiList.setAdapter(userAdapter);
 		setupViewListeners();
