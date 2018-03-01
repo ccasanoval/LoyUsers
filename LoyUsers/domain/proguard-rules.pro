@@ -19,14 +19,3 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-
--dontwarn javax.annotation.**
--dontwarn okio.**
--dontwarn retrofit2.Platform$Java8
--keepclassmembernames,allowobfuscation interface * {
-    @retrofit2.http.* <methods>;
-}
-
--dontwarn org.mockito.**
--dontwarn sun.reflect.**
--dontwarn android.test.**

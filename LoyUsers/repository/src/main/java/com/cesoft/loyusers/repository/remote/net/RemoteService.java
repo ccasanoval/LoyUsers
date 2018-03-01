@@ -3,7 +3,7 @@ package com.cesoft.loyusers.repository.remote.net;
 import com.cesoft.loyusers.repository.remote.model.RemoteUser;
 
 
-import rx.Observable;
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

@@ -1,6 +1,6 @@
 package com.cesoft.loyusers.repository.remote.executor;
 
-import android.support.annotation.NonNull;
+//import android.support.annotation.NonNull;
 
 import com.cesoft.loyusers.domain.executor.ThreadExecutor;
 
@@ -26,14 +26,14 @@ public class JobExecutor implements ThreadExecutor {
 				new LinkedBlockingQueue<>(), new JobThreadFactory());
 	}
 
-	@Override public void execute(@NonNull Runnable runnable) {
+	@Override public void execute(Runnable runnable) {
 		threadPoolExecutor.execute(runnable);
 	}
 
 	private static class JobThreadFactory implements ThreadFactory {
 		private int counter = 0;
 		@Override
-		public Thread newThread(@NonNull Runnable runnable) {
+		public Thread newThread(Runnable runnable) {
 			return new Thread(runnable, "android_" + counter++);
 		}
 	}

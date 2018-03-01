@@ -1,36 +1,23 @@
-apply plugin: 'java-library'
+apply plugin: 'java'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = 1.8
 
-configurations {
-    provided
-}
-
-sourceSets {
-    main {
-        compileClasspath += configurations.provided
-    }
-}
 
 def javaxAnnotationVersion='1.0'
 def javaxInjectVersion='1'
 def rxJavaVersion='2.0.2'
-
 def jUnitVersion = '4.12'
 def assertJVersion = '1.7.1'
 def mockitoVersion = '2.8.47'
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    provided "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+    //implementation "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
     implementation "javax.inject:javax.inject:${javaxInjectVersion}"
     implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+
     /// UNIT TESTS
+    //testCompile
     implementation "junit:junit:${jUnitVersion}"
     implementation "org.mockito:mockito-core:${mockitoVersion}"
     implementation "org.assertj:assertj-core:${assertJVersion}"
 }
-
-

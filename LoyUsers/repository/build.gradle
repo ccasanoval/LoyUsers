@@ -1,8 +1,15 @@
 apply plugin: 'com.android.library'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'ces'
+            keyPassword 'colt1911'
+            storeFile file('C:/a/cestest.jks')
+            storePassword 'colt1911'
+        }
+    }
     compileSdkVersion 27
-
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 27
@@ -12,14 +19,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
-
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -31,7 +37,6 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
-
 }
 
 def jUnitVersion = '4.12'
@@ -46,12 +51,13 @@ def androidAnnotationsVersion = '21.0.3'
 def retrofitVersion = '2.3.0'
 def timberVersion = '4.5.1'
 
-def reservoirVersion = '3.1.0'
-def nytimesStoreVersion = '1.0.6'
+//def reservoirVersion = '3.1.0'
+//def nytimesStoreVersion = '1.0.6'
 
 
 dependencies {
     implementation project(':domain')
+
     //implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // TESTS
@@ -63,9 +69,11 @@ dependencies {
 
     // REMOTE
     implementation "com.google.code.gson:gson:${gsonVersion}"
-    implementation "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+
+    //implementation "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
     implementation "javax.inject:javax.inject:${javaxInjectVersion}"
-    implementation "com.android.support:support-annotations:${androidAnnotationsVersion}"
+
+    //implementation "com.android.support:support-annotations:${androidAnnotationsVersion}"
     implementation "com.squareup.okhttp3:okhttp:${okHttpVersion}"
     implementation "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
     implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
@@ -73,13 +81,12 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
 
     // CACHE
-    //compile "com.anupcowkur:reservoir:${reservoirVersion}"
-    implementation "com.nytimes.android:cache:${nytimesStoreVersion}"
-    implementation "com.nytimes.android:store:${nytimesStoreVersion}"
-    implementation "com.nytimes.android:middleware:${nytimesStoreVersion}"
-    implementation "com.nytimes.android:filesystem:${nytimesStoreVersion}"
+    implementation 'com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x'
+    implementation 'com.github.VictorAlbertos.Jolyglot:gson:0.0.4'
+
+    //GsonSpeaker
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
 
     // LOG
     implementation "com.jakewharton.timber:timber:${timberVersion}"
-
 }

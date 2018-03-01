@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'ces'
+            keyPassword 'colt1911'
+            storeFile file('C:/a/cestest.jks')
+            storePassword 'colt1911'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.cesoft.loyusers"
@@ -16,6 +24,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro',
                     "$rootProject.rootDir.absolutePath/domain/proguard-rules.pro"
+            signingConfig signingConfigs.config
         }
     }
     compileOptions {
@@ -31,37 +40,48 @@ android {
         exclude 'META-INF/rxjava.properties'
 
     }
+    productFlavors {
+    }
 }
 
-//Libraries
 def supportVersion = '27.0.2'
 def rxAndroidVersion = '2.0.1'
 def supportLibraryVersion = '27.0.2'
 def timberVersion = '4.5.1'
 def glideVersion = '4.0.0'
 def daggerVersion = '2.13'
+def jUnitVersion = '4.12'
+def archComponents = '1.1.0'
 
 dependencies {
+
     // gradlew -q dependencies app:dependencies --configuration debugAndroidTestCompileClasspath
+
     // para ver que dependencias hay y saber como arreglar un conflicto
     implementation project(':domain')
     implementation project(':repository')
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // SUPPORT
     implementation "com.android.support:appcompat-v7:$supportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     // ARCHITECTURE COMPONENTS
-    implementation 'android.arch.lifecycle:extensions:1.1.0'
-    //implementation "android.arch.lifecycle:viewmodel:1.1.0"
-    //implementation "android.arch.lifecycle:livedata:1.1.0"
-    implementation 'android.arch.lifecycle:common-java8:1.1.0'
-    //annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
+    implementation "android.arch.lifecycle:extensions:${archComponents}"
+
+    //implementation "android.arch.lifecycle:viewmodel:${archComponents}"
+
+    //implementation "android.arch.lifecycle:livedata:${archComponents}"
+    implementation "android.arch.lifecycle:common-java8:${archComponents}"
+
+    //annotationProcessor "android.arch.lifecycle:compiler:${archComponents}"
 
     // DB
-    implementation 'android.arch.persistence.room:runtime:1.0.0'
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+    //implementation 'android.arch.persistence.room:runtime:1.0.0'
+
+    //annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 
     // DI
     compile "com.google.dagger:dagger:$daggerVersion"
@@ -74,12 +94,13 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:${glideVersion}"
 
     // TEST
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'android.arch.core:core-testing:1.1.0'
+    testImplementation "junit:junit:${jUnitVersion}"
+    testImplementation "android.arch.core:core-testing:${archComponents}"
+
+    //testImplementation "android.arch.persistence.room:testing:${archComponents}"
     testImplementation 'org.robolectric:robolectric:3.4.2'
-    testImplementation 'android.arch.persistence.room:testing:1.0.0'
+
     //
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
 }
